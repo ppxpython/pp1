@@ -21,7 +21,9 @@ class WeiboSpider(Spider):
             # '2803301701',  # 人民日报
             # '1699432410'  # 新华社
             # '5063744248'
-            '3176010690'
+            # '3176010690'
+            '2028810631'  # 新浪新闻
+            '1644114654'  # 新京报
 
             # '1768876554'
 
@@ -127,7 +129,7 @@ class WeiboSpider(Spider):
                                                                            user_tweet_id.group(1))
                 tweet_item['user_id'] = user_tweet_id.group(2)
                 tweet_item['_id'] = '{}_{}'.format(user_tweet_id.group(2), user_tweet_id.group(1))
-                create_time_info = tweet_node.xpath('.//span[@class="ct" and contains(text(),"来自")]/text()')[0]
+                create_time_info = tweet_node.xpath('//div/span[@class="ct" and contains(text(),"来自")]/text()')[0]
                 tweet_item['created_at'] = time_fix(create_time_info.split('来自')[0].strip())
 
                 like_num = tweet_node.xpath('.//a[contains(text(),"赞[")]/text()')[0]
@@ -248,5 +250,5 @@ class WeiboSpider(Spider):
 
 if __name__ == "__main__":
     process = CrawlerProcess(get_project_settings())
-    process.crawl('weibo_spider')
+    process.crawl('person_weibo')
     process.start()

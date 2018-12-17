@@ -21,7 +21,10 @@ class SingleWeibo(Spider):
             # 'https://weibo.cn/5063744248/Ezb63iprj',
             # 'https://weibo.cn/5063744248/H6rI0wVZf'
             # 'https://weibo.cn/5063744248/H6D4hpULk'  # 人民日报某积极微博
-            'https://weibo.cn/5063744248/H6yI2cMyN'  # 消极微博
+            # 'https://weibo.cn/5063744248/H6yI2cMyN'  # 消极微博
+            'https://weibo.cn/1496814565/H7ubJA7LU'  # 华西都市报地震
+            'https://weibo.cn/6004281123/H7ujGcEut'  # 梨视频
+
         ]
 
         for url in start_urls:

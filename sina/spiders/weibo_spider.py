@@ -17,7 +17,7 @@ class WeiboSpider(Spider):
 
     def start_requests(self):
         start_uids = [
-            '2803301701',  # 人民日报
+            # '2803301701',  # 人民日报
             '1699432410'  # 新华社
             # '5063744248'
             # '3176010690'  # 带带大师兄
@@ -94,14 +94,14 @@ class WeiboSpider(Spider):
         yield Request(url=self.base_url + '/{}?page=1'.format(information_item['_id']), callback=self.parse_tweet,
                       priority=1)
 
-        # # 获取关注列表
-        # yield Request(url=self.base_url + '/{}/follow?page=1'.format(information_item['_id']),
-        #               callback=self.parse_follow,
-        #               dont_filter=True)
-        # # 获取粉丝列表
-        # yield Request(url=self.base_url + '/{}/fans?page=1'.format(information_item['_id']),
-        #               callback=self.parse_fans,
-        #               dont_filter=True)
+        # 获取关注列表
+        yield Request(url=self.base_url + '/{}/follow?page=1'.format(information_item['_id']),
+                      callback=self.parse_follow,
+                      dont_filter=True)
+        # 获取粉丝列表
+        yield Request(url=self.base_url + '/{}/fans?page=1'.format(information_item['_id']),
+                      callback=self.parse_fans,
+                      dont_filter=True)
 
     def parse_tweet(self, response):
         if response.url.endswith('page=1'):

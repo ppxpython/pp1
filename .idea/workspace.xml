@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f9a7fa4-1bcf-40a0-8308-1559a0ccac55" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/WeiboScrapy/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/WeiboScrapy/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WeiboScrapy/sina/save_data/weibo_test.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WeiboScrapy/sina/spiders/person_weibo.py" beforeDir="false" afterPath="$PROJECT_DIR$/WeiboScrapy/sina/spiders/person_weibo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WeiboScrapy/sina/spiders/single_weibo.py" beforeDir="false" afterPath="$PROJECT_DIR$/WeiboScrapy/sina/spiders/single_weibo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WeiboScrapy/sina/spiders/weibo_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/WeiboScrapy/sina/spiders/weibo_spider.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sina/spiders/keyword_spider.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/weibo_topic/weibo_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sina/middlewares.py" beforeDir="false" afterPath="$PROJECT_DIR$/sina/middlewares.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sina/spiders/person_weibo.py" beforeDir="false" afterPath="$PROJECT_DIR$/sina/spiders/person_weibo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sina/spiders/single_weibo.py" beforeDir="false" afterPath="$PROJECT_DIR$/sina/spiders/single_weibo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sina/spiders/weibo_spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/sina/spiders/weibo_spider.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,6 +25,7 @@
     <SUITE FILE_PATH="coverage/WeiboSpider$weibo_cloud__1_.coverage" NAME="weibo_cloud (1) Coverage Results" MODIFIED="1544359972108" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../weibo_data/word_cloud" />
     <SUITE FILE_PATH="coverage/WeiboSpider$train.coverage" NAME="train Coverage Results" MODIFIED="1544530953590" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../weibo_data" />
     <SUITE FILE_PATH="coverage/WeiboSpider_master$save_to_excel.coverage" NAME="save_to_excel Coverage Results" MODIFIED="1544333539669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sina/save_data" />
+    <SUITE FILE_PATH="coverage/WeiboSpider$weibo_search.coverage" NAME="weibo_search Coverage Results" MODIFIED="1545011132744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/weibo_topic" />
     <SUITE FILE_PATH="coverage/WeiboSpider$save_to_excel.coverage" NAME="save_to_excel Coverage Results" MODIFIED="1544528508868" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sina/save_data" />
     <SUITE FILE_PATH="coverage/WeiboSpider_master$weibo_cloud.coverage" NAME="weibo_cloud Coverage Results" MODIFIED="1544336379383" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../weibo_data/wordcloud" />
     <SUITE FILE_PATH="coverage/WeiboSpider_master$pj.coverage" NAME="pj Coverage Results" MODIFIED="1542029067829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sina/account_build" />
@@ -98,11 +104,16 @@
     <session id="-2024196571">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.14" value="1" />
+          <entry key="project.open.time.15" value="1" />
+          <entry key="project.open.time.16" value="2" />
+          <entry key="project.open.time.23" value="1" />
+          <entry key="project.open.time.28" value="1" />
+          <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -112,29 +123,31 @@
           <entry key="null/sina/Comments" value="6" />
           <entry key="null/sina/Information" value="7" />
           <entry key="null/sina/Tweets" value="2" />
-          <entry key="py" value="23" />
-          <entry key="txt" value="53" />
+          <entry key="null/sina/account" value="1" />
+          <entry key="py" value="35" />
+          <entry key="txt" value="54" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Ini" value="1" />
-          <entry key="MONGO" value="15" />
-          <entry key="PLAIN_TEXT" value="56" />
-          <entry key="Python" value="23" />
+          <entry key="MONGO" value="16" />
+          <entry key="PLAIN_TEXT" value="57" />
+          <entry key="Python" value="35" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Python Console" value="187" />
-          <entry key="py" value="502" />
-          <entry key="txt" value="6" />
+          <entry key="dummy" value="7" />
+          <entry key="py" value="1500" />
+          <entry key="txt" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="6" />
-          <entry key="Python" value="689" />
+          <entry key="PLAIN_TEXT" value="15" />
+          <entry key="Python" value="1687" />
         </counts>
       </usages-collector>
     </session>
@@ -144,7 +157,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../weibo_data/data_analysis/sentiment_analysis.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
+            <state relative-caret-position="210">
               <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -153,11 +166,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sina/spiders/weibo_spider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-546">
-              <caret line="38" column="100" lean-forward="true" selection-start-line="38" selection-start-column="100" selection-end-line="38" selection-end-column="100" />
+            <state relative-caret-position="462">
+              <caret line="31" selection-end-line="253" />
               <folding>
                 <element signature="e#40#49#0" expanded="true" />
               </folding>
@@ -166,10 +179,27 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../weibo_data/train.py">
+        <entry file="file://$PROJECT_DIR$/sina/spiders/keyword_spider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+            <state relative-caret-position="1383">
+              <caret line="73" column="7" selection-start-line="73" selection-start-column="7" selection-end-line="73" selection-end-column="7" />
+              <folding>
+                <element signature="e#40#49#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/weibo_topic/weibo_search.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="14">
+              <caret line="27" column="155" selection-start-line="27" selection-start-column="155" selection-end-line="27" selection-end-column="155" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+                <marker date="1545011134000" expanded="true" signature="123:128" ph="..." />
+                <marker date="1545011134000" expanded="true" signature="559:1797" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -177,27 +207,28 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sina/spiders/single_weibo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="26" column="12" lean-forward="true" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
-              <folding>
-                <element signature="e#1#10#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="609">
+              <caret line="38" column="43" selection-start-line="38" selection-start-column="43" selection-end-line="38" selection-end-column="43" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sina/save_data/save_to_excel.py">
+        <entry file="file://$PROJECT_DIR$/sina/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
-              <caret line="71" column="21" selection-start-line="71" selection-start-column="21" selection-end-line="71" selection-end-column="21" />
+            <state relative-caret-position="189">
+              <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../weibo_data/word_cloud/weibo_cloud.py">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/sina/spiders/person_weibo.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2562">
+              <caret line="131" column="114" selection-start-line="131" selection-start-column="114" selection-end-line="131" selection-end-column="114" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -210,27 +241,23 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/WeiboScrapy" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/sina/account_build/account_sample.txt" />
-        <option value="$PROJECT_DIR$/sina/middlewares.py" />
         <option value="$PROJECT_DIR$/sina/account_build/pj.py" />
         <option value="$PROJECT_DIR$/sina/account_build/account.txt" />
         <option value="$PROJECT_DIR$/sina/items.py" />
         <option value="$PROJECT_DIR$/../weibo_data/wordcloud/weibo_cloud.py" />
         <option value="$PROJECT_DIR$/sina/pipelines.py" />
         <option value="$PROJECT_DIR$/scrapy.cfg" />
-        <option value="$PROJECT_DIR$/sina/spiders/weibo_spider.py" />
         <option value="$PROJECT_DIR$/../weibo_data/word_cloud/weibo_cloud.py" />
         <option value="$PROJECT_DIR$/sina/account_build/login.py" />
         <option value="$PROJECT_DIR$/sina/account_build/fill.txt" />
         <option value="$PROJECT_DIR$/sina/account_build/fill2.txt" />
-        <option value="$PROJECT_DIR$/sina/settings.py" />
         <option value="$USER_HOME$/Anaconda3/Lib/site-packages/snownlp/seg/__init__.py" />
-        <option value="$PROJECT_DIR$/sina/spiders/person_weibo.py" />
         <option value="$PROJECT_DIR$/sina/save_data/save_to_excel.py" />
         <option value="$PROJECT_DIR$/../weibo_data/data_analysis/neg.txt" />
         <option value="$PROJECT_DIR$/../weibo_data/data_analysis/pos.txt" />
@@ -240,7 +267,14 @@
         <option value="$PROJECT_DIR$/../weibo_data/words/pos_tarin.txt" />
         <option value="$PROJECT_DIR$/../weibo_data/train.py" />
         <option value="$PROJECT_DIR$/../weibo_data/data_analysis/sentiment_analysis.py" />
+        <option value="$PROJECT_DIR$/sina/spiders/weibo_spider.py" />
+        <option value="$PROJECT_DIR$/sina/middlewares.py" />
+        <option value="$PROJECT_DIR$/sina/spiders/page_spider.py" />
+        <option value="$PROJECT_DIR$/sina/settings.py" />
+        <option value="$PROJECT_DIR$/sina/spiders/person_weibo.py" />
         <option value="$PROJECT_DIR$/sina/spiders/single_weibo.py" />
+        <option value="$PROJECT_DIR$/sina/spiders/keyword_spider.py" />
+        <option value="$PROJECT_DIR$/weibo_topic/weibo_search.py" />
       </list>
     </option>
   </component>
@@ -251,10 +285,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="32" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="-6" />
+    <option name="y" value="34" />
+    <option name="width" value="1293" />
+    <option name="height" value="773" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -274,6 +308,17 @@
               <item name="WeiboSpider" type="b2602c69:ProjectViewProjectNode" />
               <item name="WeiboSpider" type="462c0819:PsiDirectoryNode" />
               <item name="sina" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WeiboSpider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WeiboSpider" type="462c0819:PsiDirectoryNode" />
+              <item name="sina" type="462c0819:PsiDirectoryNode" />
+              <item name="spiders" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WeiboSpider" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WeiboSpider" type="462c0819:PsiDirectoryNode" />
+              <item name="weibo_topic" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -309,7 +354,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.sentiment_analysis">
+  <component name="RunManager" selected="Python.weibo_search">
     <configuration name="login" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="WeiboSpider" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -398,20 +443,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="weibo_cloud (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="weibo_data" />
+    <configuration name="weibo_search" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="WeiboSpider" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../weibo_data/word_cloud" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/weibo_topic" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../weibo_data/word_cloud/weibo_cloud.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/weibo_topic/weibo_search.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -422,18 +467,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.login" />
-      <item itemvalue="Python.weibo_cloud (1)" />
       <item itemvalue="Python.sentiment_analysis" />
       <item itemvalue="Python.train" />
       <item itemvalue="Python.save_to_excel" />
+      <item itemvalue="Python.weibo_search" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.weibo_search" />
         <item itemvalue="Python.sentiment_analysis" />
         <item itemvalue="Python.train" />
         <item itemvalue="Python.save_to_excel" />
         <item itemvalue="Python.login" />
-        <item itemvalue="Python.weibo_cloud (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -448,18 +493,25 @@
       <option name="presentableId" value="Default" />
       <updated>1541928606530</updated>
     </task>
+    <task id="LOCAL-00001" summary="。。">
+      <created>1544537122058</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1544537122058</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="32" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="32" width="1936" height="1056" extended-state="7" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14872068" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32891247" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4989339" weight="0.36225596" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4989339" visible="true" weight="0.4197397" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -467,15 +519,15 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49962208" weight="0.4902386" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49962208" weight="0.31344903" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5010661" side_tool="true" weight="0.2570499" />
-      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.26789588" />
-      <window_info anchor="bottom" id="File Transfer" order="13" weight="0.3470716" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.26789588" />
+      <window_info anchor="bottom" id="File Transfer" order="13" weight="0.3438178" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" weight="0.28784648" />
-      <window_info anchor="right" id="Mongo Explorer" order="4" visible="true" weight="0.108208954" />
+      <window_info anchor="right" id="Mongo Explorer" order="4" visible="true" weight="0.114605546" />
       <window_info anchor="right" id="Database" order="5" weight="0.18594104" />
     </layout>
   </component>
@@ -487,20 +539,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
-      <path value="$PROJECT_DIR$" />
+      <path value="$PROJECT_DIR$/WeiboScrapy" />
     </ignored-roots>
+    <MESSAGE value="。。" />
+    <option name="LAST_COMMIT_MESSAGE" value="。。" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sina/account_build/长城.png" />
-    <entry file="file://$PROJECT_DIR$/sina/account_build/captcha.png" />
-    <entry file="file://$USER_HOME$/Anaconda3/Lib/site-packages/selenium/webdriver/support/wait.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="79" selection-start-line="79" selection-end-line="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sina/account_build/pj.py" />
     <entry file="file://$PROJECT_DIR$/sina/save_data/weibo.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -530,13 +574,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="11" lean-forward="true" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sina/account_build/fill.txt" />
     <entry file="file://$PROJECT_DIR$/sina/account_build/fill2.txt" />
     <entry file="file://$PROJECT_DIR$/sina/account_build/login.py" />
@@ -558,13 +595,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
           <caret line="4" column="16" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sina/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="35" column="35" lean-forward="true" selection-start-line="35" selection-start-column="35" selection-end-line="35" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -592,9 +622,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1071">
           <caret line="51" column="21" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="21" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -619,23 +646,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sina/spiders/person_weibo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
-          <folding>
-            <element signature="e#40#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Anaconda3/Lib/site-packages/snownlp/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
           <caret line="61" column="29" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="29" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -643,29 +657,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="16" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sina/account_build/agent.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/sina/middlewares.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#18#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sina/save_data/weibo_rm.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../weibo_data/word_cloud/weibo_cloud.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/../weibo_data/weibo_rm.csv">
@@ -677,13 +675,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-6">
           <caret line="75" selection-start-line="75" selection-end-line="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sina/save_data/save_to_excel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="71" column="21" selection-start-line="71" selection-start-column="21" selection-end-line="71" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -723,17 +714,15 @@
         <state relative-caret-position="-240" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../weibo_data/data_analysis/pos.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="8253" column="1" selection-start-line="8253" selection-start-column="1" selection-end-line="8257" selection-end-column="17" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/../weibo_data/data_analysis/pos.txt" />
+    <entry file="file://$PROJECT_DIR$/../weibo_data/data_analysis/neg.txt" />
+    <entry file="file://$PROJECT_DIR$/sina/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../weibo_data/data_analysis/neg.txt">
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61">
-          <caret line="5958" column="5" selection-start-line="5958" selection-start-column="5" selection-end-line="5976" />
+        <state>
+          <caret selection-end-line="5" />
         </state>
       </provider>
     </entry>
@@ -744,19 +733,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sina/spiders/single_weibo.py">
+    <entry file="file://$PROJECT_DIR$/sina/save_data/save_to_excel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="26" column="12" lean-forward="true" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
-          <folding>
-            <element signature="e#1#10#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1449">
+          <caret line="71" column="21" selection-start-line="71" selection-start-column="21" selection-end-line="71" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../weibo_data/word_cloud/weibo_cloud.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sina/middlewares.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="48" column="30" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sina/spiders/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../weibo_data/data_analysis/sentiment_analysis.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
+        <state relative-caret-position="210">
           <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
@@ -766,10 +769,53 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sina/spiders/weibo_spider.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-546">
-          <caret line="38" column="100" lean-forward="true" selection-start-line="38" selection-start-column="100" selection-end-line="38" selection-end-column="100" />
+        <state relative-caret-position="462">
+          <caret line="31" selection-end-line="253" />
           <folding>
             <element signature="e#40#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sina/spiders/single_weibo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="38" column="43" selection-start-line="38" selection-start-column="43" selection-end-line="38" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sina/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sina/spiders/person_weibo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2562">
+          <caret line="131" column="114" selection-start-line="131" selection-start-column="114" selection-end-line="131" selection-end-column="114" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sina/spiders/keyword_spider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1383">
+          <caret line="73" column="7" selection-start-line="73" selection-start-column="7" selection-end-line="73" selection-end-column="7" />
+          <folding>
+            <element signature="e#40#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/weibo_topic/weibo_search.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14">
+          <caret line="27" column="155" selection-start-line="27" selection-start-column="155" selection-end-line="27" selection-end-column="155" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <marker date="1545011134000" expanded="true" signature="123:128" ph="..." />
+            <marker date="1545011134000" expanded="true" signature="559:1797" ph="..." />
           </folding>
         </state>
       </provider>
