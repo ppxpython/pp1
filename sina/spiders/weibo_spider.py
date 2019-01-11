@@ -18,12 +18,12 @@ class WeiboSpider(Spider):
     def start_requests(self):
         start_uids = [
             # '2803301701',  # 人民日报
-            '1699432410'  # 新华社
-            # '5063744248'
-            # '3176010690'  # 带带大师兄
-            # '1828817187'  # 马蓉
-            # '1768876554'
-            '1111681197'  # 来去之间
+            '1699432410',  # 新华社
+            # '5063744248',
+            # '3176010690', # 带带大师兄
+            # '1828817187', # 马蓉
+            # '1768876554',
+            '1111681197',  # 来去之间
             '1989660417'  # 胡锡进
 
         ]
@@ -94,14 +94,16 @@ class WeiboSpider(Spider):
         yield Request(url=self.base_url + '/{}?page=1'.format(information_item['_id']), callback=self.parse_tweet,
                       priority=1)
 
-        # 获取关注列表
-        yield Request(url=self.base_url + '/{}/follow?page=1'.format(information_item['_id']),
-                      callback=self.parse_follow,
-                      dont_filter=True)
-        # 获取粉丝列表
-        yield Request(url=self.base_url + '/{}/fans?page=1'.format(information_item['_id']),
-                      callback=self.parse_fans,
-                      dont_filter=True)
+        # # 获取关注列表
+        # yield Request(url=self.base_url + '/{}/follow?page=1'.format(information_item['_id']),
+        #               callback=self.parse_follow,
+        #               dont_filter=True)
+        # # 获取粉丝列表
+        # yield Request(url=self.base_url + '/{}/fans?page=1'.format(information_item['_id']),
+        #               callback=self.parse_fans,
+        #               dont_filter=True)
+
+
 
     def parse_tweet(self, response):
         if response.url.endswith('page=1'):
@@ -128,7 +130,7 @@ class WeiboSpider(Spider):
                                                                            user_tweet_id.group(1))
                 tweet_item['user_id'] = user_tweet_id.group(2)
                 tweet_item['_id'] = '{}_{}'.format(user_tweet_id.group(2), user_tweet_id.group(1))
-                create_time_info = tweet_node.xpath('.//span[@class="ct" and contains(text(),"来自")]/text()')[0]
+                create_time_info = tweet_node.xpath('//div/span[@class="ct" and contains(text(),"来自")]/text()')[0]
                 tweet_item['created_at'] = time_fix(create_time_info.split('来自')[0].strip())
 
                 like_num = tweet_node.xpath('.//a[contains(text(),"赞[")]/text()')[0]
@@ -141,6 +143,8 @@ class WeiboSpider(Spider):
                 tweet_item['comment_num'] = int(re.search('\d+', comment_num).group())
 
                 tweet_content_node = tweet_node.xpath('.//span[@class="ctt"]')[0]
+
+                self.logger.debug(tweet_item)
 
                 # 检测由没有阅读全文:
                 all_content_link = tweet_content_node.xpath('.//a[text()="全文"]')
@@ -164,7 +168,7 @@ class WeiboSpider(Spider):
         # 有阅读全文的情况，获取全文
         tree_node = etree.HTML(response.body)
         tweet_item = response.meta['item']
-        content_node = tree_node.xpath('//div[@id="M_"]//span[@class="ctt"]')[0]
+        content_node = tree_node.xpath('//div[@id="M_"]/div/span[@class="ctt"]')[0]
         all_content = content_node.xpath('string(.)').strip('\u200b')
         tweet_item['content'] = all_content
         yield tweet_item

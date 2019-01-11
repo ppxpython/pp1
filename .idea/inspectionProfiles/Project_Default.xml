@@ -16,6 +16,7 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="str.decode" />
+          <option value="db_tools.MongoOperation.db_collenction" />
         </list>
       </option>
     </inspection_tool>

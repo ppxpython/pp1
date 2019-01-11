@@ -22,21 +22,21 @@ class WeiboSpider(Spider):
             # '1699432410'  # 新华社
             # '5063744248'
             # '3176010690'
-            '2028810631'  # 新浪新闻
+            '2028810631',  # 新浪新闻
             '1644114654'  # 新京报
 
             # '1768876554'
 
         ]
         for uid in start_uids:
-            yield Request(url="https://weibo.cn/%s/info" % uid, callback=self.parse_information)
+            yield Request(url="https://weibo.cn/{}/info".format(uid), callback=self.parse_information)
 
     def parse_information(self, response):
         """ 抓取个人信息 """
         information_item = InformationItem()
         information_item['crawl_time'] = int(time.time())
         selector = Selector(response)
-        information_item['_id'] = re.findall('(\d+)/info', response.url)[0]
+        information_item['_id'] = re.findall('/(\d+)/info', response.url)[0]
         text1 = ";".join(selector.xpath('body/div[@class="c"]//text()').extract())  # 获取标签里的所有text()
         nick_name = re.findall('昵称;?[：:]?(.*?);', text1)
         gender = re.findall('性别;?[：:]?(.*?);', text1)
@@ -95,14 +95,14 @@ class WeiboSpider(Spider):
         yield Request(url=self.base_url + '/{}?page=1'.format(information_item['_id']), callback=self.parse_tweet,
                       priority=1)
 
-        # 获取关注列表
-        yield Request(url=self.base_url + '/{}/follow?page=1'.format(information_item['_id']),
-                      callback=self.parse_follow,
-                      dont_filter=True)
-        # 获取粉丝列表
-        yield Request(url=self.base_url + '/{}/fans?page=1'.format(information_item['_id']),
-                      callback=self.parse_fans,
-                      dont_filter=True)
+        # # 获取关注列表
+        # yield Request(url=self.base_url + '/{}/follow?page=1'.format(information_item['_id']),
+        #               callback=self.parse_follow,
+        #               dont_filter=True)
+        # # 获取粉丝列表
+        # yield Request(url=self.base_url + '/{}/fans?page=1'.format(information_item['_id']),
+        #               callback=self.parse_fans,
+        #               dont_filter=True)
 
     def parse_tweet(self, response):
         if response.url.endswith('page=1'):
