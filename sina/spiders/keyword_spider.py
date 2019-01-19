@@ -20,6 +20,7 @@ class WeiboSpider(Spider):
         start_keywords = [
             '四川宜宾地震'
         ]
+
         for keyword in start_keywords:
             yield Request(url="https://weibo.cn/search/mblog?keyword={}&sort=hot&page=1".format(keyword),
                           callback=self.parse_tweet)
@@ -90,8 +91,8 @@ class WeiboSpider(Spider):
         content_node = tree_node.xpath('//div[@id="M_"]//span[@class="ctt"]')[0]
         all_content = content_node.xpath('string(.)').strip('\u200b')
         tweet_item['content'] = all_content
+        # tweet_item['content']
         yield tweet_item
-
 
     def parse_comment(self, response):
         # 如果是第1页，一次性获取后面的所有页
@@ -112,12 +113,57 @@ class WeiboSpider(Spider):
             comment_item = CommentItem()
             comment_item['crawl_time'] = int(time.time())
             comment_item['weibo_url'] = response.meta['weibo_url']
-            comment_item['comment_user_id'] = re.search(r'/u/(\d+)', comment_user_url).group(1)
+            uid = re.search(r'/u/(\d+)', comment_user_url).group(1)
+            comment_item['comment_user_id'] = uid
             comment_item['content'] = comment_node.xpath('.//span[@class="ctt"]').xpath('string(.)').extract_first()
             comment_item['_id'] = comment_node.xpath('./@id').extract_first()
             created_at = comment_node.xpath('.//span[@class="ct"]/text()').extract_first()
             comment_item['created_at'] = time_fix(created_at.split('\xa0')[0])
             yield comment_item
+            yield Request(url="https://weibo.cn/%s/info" % uid, callback=self.parse_information)
+
+    def parse_information(self, response):
+        """ 抓取评论个人信息 """
+        information_item = InformationItem()
+        information_item['crawl_time'] = int(time.time())
+        selector = Selector(response)
+        information_item['_id'] = re.findall('(\d+)/info', response.url)[0]
+        text1 = ";".join(selector.xpath('body/div[@class="c"]//text()').extract())  # 获取标签里的所有text()
+        nick_name = re.findall('昵称;?[：:]?(.*?);', text1)
+        gender = re.findall('性别;?[：:]?(.*?);', text1)
+        place = re.findall('地区;?[：:]?(.*?);', text1)
+        briefIntroduction = re.findall('简介;[：:]?(.*?);', text1)
+        birthday = re.findall('生日;?[：:]?(.*?);', text1)
+        sex_orientation = re.findall('性取向;?[：:]?(.*?);', text1)
+        sentiment = re.findall('感情状况;?[：:]?(.*?);', text1)
+        vip_level = re.findall('会员等级;?[：:]?(.*?);', text1)
+        authentication = re.findall('认证;?[：:]?(.*?);', text1)
+        if nick_name and nick_name[0]:
+            information_item["nick_name"] = nick_name[0].replace(u"\xa0", "")
+        if gender and gender[0]:
+            information_item["gender"] = gender[0].replace(u"\xa0", "")
+        if place and place[0]:
+            place = place[0].replace(u"\xa0", "").split(" ")
+            information_item["province"] = place[0]
+            if len(place) > 1:
+                information_item["city"] = place[1]
+        if briefIntroduction and briefIntroduction[0]:
+            information_item["brief_introduction"] = briefIntroduction[0].replace(u"\xa0", "")
+        if birthday and birthday[0]:
+            information_item['birthday'] = birthday[0]
+        if sex_orientation and sex_orientation[0]:
+            if sex_orientation[0].replace(u"\xa0", "") == gender[0]:
+                information_item["sex_orientation"] = "同性恋"
+            else:
+                information_item["sex_orientation"] = "异性恋"
+        if sentiment and sentiment[0]:
+            information_item["sentiment"] = sentiment[0].replace(u"\xa0", "")
+        if vip_level and vip_level[0]:
+            information_item["vip_level"] = vip_level[0].replace(u"\xa0", "")
+        if authentication and authentication[0]:
+            information_item["authentication"] = authentication[0].replace(u"\xa0", "")
+        information_item['mark'] =
+        yield information_item
 
 
 if __name__ == "__main__":
