@@ -2,11 +2,12 @@
 
 BOT_NAME = 'sina'
 
+KEYWORDS = ''
 
 SPIDER_MODULES = ['sina.spiders']
 NEWSPIDER_MODULE = 'sina.spiders'
 
-LOG_LEVEL = 'INFO'
+# LOG_LEVEL = 'INFO'
 ROBOTSTXT_OBEY = False
 
 DEFAULT_REQUEST_HEADERS = {

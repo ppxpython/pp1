@@ -7,6 +7,8 @@ from scrapy.crawler import CrawlerProcess
 from scrapy.selector import Selector
 from scrapy.http import Request
 from scrapy.utils.project import get_project_settings
+
+from sina.settings import KEYWORDS
 from sina.spiders.utils import time_fix
 import time
 from sina.items import TweetsItem, InformationItem, RelationshipsItem, CommentItem
@@ -15,13 +17,16 @@ from sina.items import TweetsItem, InformationItem, RelationshipsItem, CommentIt
 class WeiboSpider(Spider):
     name = "keyword"
     base_url = "https://weibo.cn"
+    mark = None
+    keyword = ''
 
     def start_requests(self):
-        start_keywords = [
-            '四川宜宾地震'
-        ]
-
+        global keyword
+        start_keywords = [KEYWORDS]
+        print("----------------", KEYWORDS)
         for keyword in start_keywords:
+            global mark
+            mark = keyword
             yield Request(url="https://weibo.cn/search/mblog?keyword={}&sort=hot&page=1".format(keyword),
                           callback=self.parse_tweet)
 
@@ -59,18 +64,19 @@ class WeiboSpider(Spider):
                 repost_num = tweet_node.xpath('.//a[contains(text(),"转发[")]/text()')[0]
                 tweet_item['repost_num'] = int(re.search('\d+', repost_num).group())
 
-                comment_num = \
-                tweet_node.xpath('.//a[contains(text(),"评论[") and not(contains(text(),"原文"))]/text()')[0]
+                comment_num = tweet_node.xpath('.//a[contains(text(),"评论[") and not(contains(text(),"原文"))]/text()')[0]
                 tweet_item['comment_num'] = int(re.search('\d+', comment_num).group())
+                tweet_item['mark'] = mark
 
                 tweet_content_node = tweet_node.xpath('.//span[@class="ctt"]')[0]
-
 
                 # 检测由没有阅读全文:
                 all_content_link = tweet_content_node.xpath('.//a[text()="全文"]')
                 if all_content_link:
                     all_content_url = self.base_url + all_content_link[0].xpath('./@href')[0]
-                    yield Request(all_content_url, callback=self.parse_all_content, meta={'item': tweet_item},priority=1)
+                    yield Request(all_content_url,
+                                  callback=self.parse_all_content,
+                                  meta={'item': tweet_item}, priority=1)
 
                 else:
                     all_content = tweet_content_node.xpath('string(.)').strip('\u200b')
@@ -79,7 +85,9 @@ class WeiboSpider(Spider):
 
                 # 抓取该微博的评论信息
                 comment_url = self.base_url + '/comment/' + tweet_item['weibo_url'].split('/')[-1] + '?page=1'
-                yield Request(url=comment_url, callback=self.parse_comment, meta={'weibo_url': tweet_item['weibo_url']})
+                yield Request(url=comment_url,
+                              callback=self.parse_comment,
+                              meta={'weibo_url': tweet_item['weibo_url']})
 
             # except Exception as e:
             #     self.logger.error(e)
@@ -104,6 +112,7 @@ class WeiboSpider(Spider):
                 for page_num in range(2, all_page + 1):
                     page_url = response.url.replace('page=1', 'page={}'.format(page_num))
                     yield Request(page_url, self.parse_comment, dont_filter=True, meta=response.meta)
+
         selector = Selector(response)
         comment_nodes = selector.xpath('//div[@class="c" and contains(@id,"C_")]')
         for comment_node in comment_nodes:
@@ -119,6 +128,7 @@ class WeiboSpider(Spider):
             comment_item['_id'] = comment_node.xpath('./@id').extract_first()
             created_at = comment_node.xpath('.//span[@class="ct"]/text()').extract_first()
             comment_item['created_at'] = time_fix(created_at.split('\xa0')[0])
+            comment_item['mark'] = mark
             yield comment_item
             yield Request(url="https://weibo.cn/%s/info" % uid, callback=self.parse_information)
 
@@ -162,7 +172,7 @@ class WeiboSpider(Spider):
             information_item["vip_level"] = vip_level[0].replace(u"\xa0", "")
         if authentication and authentication[0]:
             information_item["authentication"] = authentication[0].replace(u"\xa0", "")
-        information_item['mark'] =
+        information_item['mark'] = mark
         yield information_item
 
 

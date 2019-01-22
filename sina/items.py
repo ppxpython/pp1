@@ -13,6 +13,7 @@ class TweetsItem(Item):
     content = Field()  # 微博内容
     user_id = Field()  # 发表该微博用户的id
     crawl_time = Field()  # 抓取时间戳
+    mark = Field()  # 任务标记
 
 
 class InformationItem(Item):
@@ -33,6 +34,7 @@ class InformationItem(Item):
     authentication = Field()  # 认证
     person_url = Field()  # 首页链接
     crawl_time = Field()  # 抓取时间戳
+    mark = Field()  # 任务标记
 
 
 class RelationshipsItem(Item):
@@ -54,3 +56,4 @@ class CommentItem(Item):
     weibo_url = Field()  # 评论的微博的url
     created_at = Field()  # 评论发表时间
     crawl_time = Field()  # 抓取时间戳
+    mark = Field()  # 任务标记
