@@ -22,7 +22,9 @@ class WeiboSpider(Spider):
 
     def start_requests(self):
         global keyword
-        start_keywords = [KEYWORDS]
+        start_keywords = [
+
+        ]
         print("----------------", KEYWORDS)
         for keyword in start_keywords:
             global mark
