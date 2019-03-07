@@ -2,8 +2,6 @@
 
 BOT_NAME = 'sina'
 
-KEYWORDS = ''
-
 SPIDER_MODULES = ['sina.spiders']
 NEWSPIDER_MODULE = 'sina.spiders'
 
@@ -34,7 +32,7 @@ ITEM_PIPELINES = {
 
 # MongoDb 配置
 
-LOCAL_MONGO_HOST = '140.143.17.162'
+LOCAL_MONGO_HOST = ''
 # LOCAL_MONGO_HOST = '172.17.136.59'
 
 LOCAL_MONGO_PORT = 27017
